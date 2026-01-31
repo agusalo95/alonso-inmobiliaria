@@ -19,15 +19,21 @@
       --radius:18px;
       --wa:#25D366;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       color:var(--text);
       background: radial-gradient(1200px 700px at 20% 0%, #fff 0%, var(--bg) 45%, #efe7dc 100%);
       line-height:1.5;
+      overflow-x:hidden; /* ✅ evita corte / desplazamiento horizontal en móvil */
     }
+
+    img{max-width:100%; height:auto;} /* ✅ imágenes nunca se pasan del ancho */
+
     a{color:inherit}
     .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
 
@@ -87,7 +93,6 @@
       box-shadow: 0 6px 14px rgba(0,0,0,.06);
       font-size:14px;
       white-space:nowrap;
-      transition: transform .15s ease;
     }
     .pill svg{width:18px;height:18px; display:block}
     .pill:hover{transform: translateY(-1px)}
@@ -110,17 +115,15 @@
     .menu-btn{
       display:none;
       align-items:center;
-      justify-content:space-between;
       gap:10px;
-      padding:12px 14px;
+      padding:10px 12px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.72);
-      border-radius:16px;
+      background:rgba(255,255,255,.70);
+      border-radius:14px;
       font-weight:900;
       cursor:pointer;
       box-shadow: 0 6px 14px rgba(0,0,0,.06);
       user-select:none;
-      width:100%;
     }
     .menu-btn svg{width:18px;height:18px; display:block}
 
@@ -203,8 +206,11 @@
 
     section{padding:18px 0}
     .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:10px; margin:18px 0 10px
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      margin:18px 0 10px
     }
     .section-title h2{margin:0; font-size:24px}
     .section-title p{margin:0; color:var(--muted); font-size:14px}
@@ -264,11 +270,11 @@
       border-top: 1px solid var(--line);
     }
 
-    /* WhatsApp flotante */
+    /* WhatsApp flotante (✅ safe area + menos pegado al borde) */
     .wa-float{
       position:fixed;
-      right:16px;
-      bottom:16px;
+      right:max(14px, env(safe-area-inset-right));
+      bottom:max(14px, env(safe-area-inset-bottom));
       z-index:9999;
       width:58px;
       height:58px;
@@ -284,6 +290,7 @@
     }
     .wa-float:hover{transform: translateY(-2px); filter:brightness(1.03)}
     .wa-float svg{width:28px;height:28px; display:block}
+
     .wa-badge{
       position:fixed;
       right:10px;
@@ -300,10 +307,9 @@
     }
     .wa-badge span{color:var(--muted); font-weight:700}
 
-    /* ✅ PRO MOBILE */
-    @media (max-width: 900px){
-      /* margen lateral más prolijo */
-      .wrap{ padding: 0 14px; }
+    /* ✅ RESPONSIVE fuerte (para que SIEMPRE aplique en móvil) */
+    @media (max-width: 1100px){
+      .wrap{padding:0 14px}
 
       .topbar{
         flex-direction:column;
@@ -311,25 +317,18 @@
         gap:10px;
       }
 
-      /* Brand centrado en móvil */
-      .brand{
-        align-items:center;
-        text-align:center;
-      }
-      .brand img{
-        width:100%;
-        height: clamp(58px, 10vw, 78px);
-      }
-      .brand .name{font-size:20px}
-      .brand .tag{font-size:13px}
-
       .right-col{
         width:100%;
         min-width:0;
         align-items:stretch;
       }
 
-      /* pills en 2 columnas iguales */
+      .brand img{
+        width:100%;
+        height: clamp(56px, 10vw, 78px);
+      }
+
+      /* Botones arriba en 2 columnas */
       .pillbar{
         width:100%;
         display:grid;
@@ -340,11 +339,18 @@
       .pill{
         width:100%;
         justify-content:center;
+        white-space:normal;
+        text-align:center;
       }
 
-      /* menú */
-      .menu-btn{ display:inline-flex; }
+      /* Botón menú visible */
+      .menu-btn{
+        display:inline-flex;
+        width:100%;
+        justify-content:space-between;
+      }
 
+      /* nav colapsado */
       nav{
         display:none;
         width:100%;
@@ -359,38 +365,43 @@
       nav a{
         flex:1 1 auto;
         text-align:center;
-        background:rgba(255,255,255,.78);
+        background:rgba(255,255,255,.75);
         border:1px solid var(--line);
       }
 
-      /* layout general */
-      .hero{grid-template-columns:1fr; padding:22px 0 10px;}
-      .hero-left, .hero-right{ padding:18px; }
-      .logo-block{ min-height: 180px; padding:14px; }
-
-      h1{font-size:34px}
-      .sub{font-size:15.5px}
-
-      /* CTAs a ancho completo */
-      .cta{ gap:10px; }
-      .cta .btn{ width:100%; }
-
-      /* secciones: título y texto en columna */
-      .section-title{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:6px;
+      .hero{
+        grid-template-columns:1fr;
+        padding:22px 0 10px;
       }
+      .hero-left{padding:18px}
+      .hero-right{padding:14px}
+      .logo-block{min-height:auto; padding:12px}
 
-      /* grillas a 1 columna */
       .info-grid{grid-template-columns:1fr}
       .grid3{grid-template-columns:1fr}
       .props{grid-template-columns:1fr}
 
-      /* formulario: 2 campos arriba -> 1 columna */
-      .two{ grid-template-columns: 1fr; }
-
       .wa-badge{display:none;}
+
+      h1{font-size:34px}
+
+      /* ✅ Lo que te estaba quedando “en dos columnas” en el celu */
+      .section-title{
+        flex-direction:column !important;
+        align-items:flex-start !important;
+        gap:6px !important;
+      }
+
+      /* ✅ Formulario: nombre/teléfono uno abajo del otro */
+      .two{
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Ajuste extra para pantallas MUY angostas */
+    @media (max-width: 380px){
+      .pillbar{grid-template-columns:1fr}
+      h1{font-size:30px}
     }
   </style>
 </head>
@@ -470,7 +481,6 @@
             </a>
           </div>
 
-          <!-- Botón menú en celular -->
           <button id="menuBtn" class="menu-btn" type="button" aria-expanded="false" aria-controls="siteNav">
             <span>☰ Menú</span>
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -642,9 +652,7 @@
           <input id="d" placeholder="Dirección / zona de la propiedad" />
           <textarea id="m" rows="4" placeholder="Tipo (casa/depto/terreno), m², ambientes, estado, etc."></textarea>
           <button class="btn primary" type="submit">Enviar por WhatsApp</button>
-          <div class="muted" style="font-size:13px">
-            Al enviar, se abre WhatsApp con el mensaje ya armado.
-          </div>
+          <div class="muted" style="font-size:13px"></div>
         </form>
       </div>
     </section>
@@ -705,6 +713,7 @@
 
 </body>
 </html>
+
 
 
 
