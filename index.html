@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alonso y Asociados Inmobiliaria</title>
+  <meta name="description" content="Tasaciones, ventas, alquileres, administración y consorcios. Atención personalizada en San Luis." />
+
+  <style>
+    :root{
+      --bg:#f4efe7;
+      --card:#ffffff;
+      --text:#101418;
+      --muted:#4b5563;
+      --line:rgba(0,0,0,.08);
+      --brand:#1f2a33;
+      --shadow: 0 12px 28px rgba(0,0,0,.10);
+      --shadow2: 0 16px 34px rgba(0,0,0,.18);
+      --radius:18px;
+      --wa:#25D366;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% 0%, #fff 0%, var(--bg) 45%, #efe7dc 100%);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(244,239,231,.75);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+
+    /* ✅ HEADER con banner grande */
+    .brand{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:6px;
+      min-width:0;
+      flex:1;
+    }
+    .brand img{
+      width: min(760px, 100%);
+      height: 84px;            /* 👈 subí/bajá esto si querés más/menos alto */
+      object-fit: contain;
+      background: transparent;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+      display:block;
+    }
+    .brand .name{font-weight:900; letter-spacing:.2px}
+    .brand .tag{font-size:12.5px;color:var(--muted); margin-top:2px}
+
+    nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{
+      text-decoration:none;
+      font-weight:700;
+      font-size:14px;
+      opacity:.9;
+      padding:10px 10px;
+      border-radius:12px;
+    }
+    nav a:hover{background:rgba(0,0,0,.05)}
+    .pillbar{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.70);
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow: 0 6px 14px rgba(0,0,0,.06);
+      font-size:14px;
+    }
+    .pill svg{width:18px;height:18px; display:block}
+    .pill:hover{transform: translateY(-1px)}
+    .hero{
+      padding:48px 0 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      background: rgba(255,255,255,.78);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{padding:26px}
+    .kicker{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.2px;
+      color:var(--brand);
+    }
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.08}
+    .sub{color:var(--muted); font-size:16px; max-width: 56ch}
+    .cta{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:var(--brand);
+      color:white;
+      border-color: rgba(255,255,255,.12);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.ghost{background:rgba(255,255,255,.78)}
+    .btn.ghost:hover{background:rgba(255,255,255,.92)}
+    .hero-right{padding:18px; display:flex; flex-direction:column; gap:12px}
+    .logo-block{
+      padding:18px;
+      display:flex; align-items:center; justify-content:center;
+      min-height: 220px;
+    }
+    .logo-block img{
+      width:min(420px, 100%);
+      height:auto;
+      object-fit:contain;
+      border-radius: 16px;
+      background:#fff;
+      border:1px solid var(--line);
+      padding:14px;
+    }
+    .info-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .mini{
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.65);
+    }
+    .mini .t{font-weight:900}
+    .mini .d{color:var(--muted); font-size:13.5px; margin-top:4px}
+
+    section{padding:18px 0}
+    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin:18px 0 10px}
+    .section-title h2{margin:0; font-size:24px}
+    .section-title p{margin:0; color:var(--muted); font-size:14px}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    .svc{
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    }
+    .svc b{display:block; font-size:16px}
+    .svc span{display:block; margin-top:6px; color:var(--muted); font-size:14px}
+
+    .props{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    .prop{
+      overflow:hidden;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    }
+    .ph{
+      height:170px;
+      background: linear-gradient(135deg, rgba(31,42,51,.12), rgba(31,42,51,.02));
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(31,42,51,.65);
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .prop .p{padding:14px}
+    .muted{color:var(--muted)}
+    form{
+      display:grid; gap:10px;
+      max-width: 700px;
+      padding:16px;
+    }
+    input, textarea{
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      font-size:14.5px;
+      outline: none;
+    }
+    input:focus, textarea:focus{border-color: rgba(31,42,51,.35)}
+    .two{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+    footer{
+      margin-top: 22px;
+      padding:18px 0 34px;
+      color:rgba(0,0,0,.55);
+      border-top: 1px solid var(--line);
+    }
+
+    /* WhatsApp flotante */
+    .wa-float{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      z-index:9999;
+      width:58px;
+      height:58px;
+      border-radius:999px;
+      background: var(--wa);
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.25);
+      text-decoration:none;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .wa-float:hover{transform: translateY(-2px); filter:brightness(1.03)}
+    .wa-float svg{width:28px;height:28px; display:block}
+    .wa-badge{
+      position:fixed;
+      right:10px;
+      bottom:86px;
+      z-index:9998;
+      background: rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding:8px 10px;
+      font-size:13px;
+      font-weight:800;
+      box-shadow: 0 12px 26px rgba(0,0,0,.12);
+      max-width: 220px;
+    }
+    .wa-badge span{color:var(--muted); font-weight:700}
+
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr}
+      .info-grid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .props{grid-template-columns:1fr}
+      nav{justify-content:flex-start}
+      .wa-badge{display:none;}
+
+      /* banner más compacto en celu */
+      .brand img{ height: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONFIG -->
+  <script>
+    const WHATSAPP_NUMBER = "5492664629727";
+    const WHATSAPP_TEXT_RAW =
+      "Hola!  Soy [Nombre]. Quisiera hacer una consulta.\n\n" +
+      "Motivo:\n" +
+      "1) Venta\n" +
+      "2) Alquiler\n" +
+      "3) Compra\n" +
+      "4) Tasación\n" +
+      "5) Administración/Consorcio\n" +
+      "6) Otra consulta\n\n";
+
+    const IG_URL = "https://www.instagram.com/alonsoasociados01/";
+    const EMAIL = "agus.alonso95@hotmail.com";
+
+    function waLink(textRaw){
+      const text = encodeURIComponent(textRaw || WHATSAPP_TEXT_RAW);
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('[data-wa]').forEach(a => a.href = waLink());
+      document.querySelectorAll('[data-ig]').forEach(a => a.href = IG_URL);
+      document.querySelectorAll('[data-mail]').forEach(a => a.href = "mailto:" + EMAIL);
+    });
+  </script>
+
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <img src="logo-banner.png" alt="Alonso y Asociados Inmobiliaria" />
+          <div class="name">Alonso y Asociados <span style="font-weight:800; opacity:.9">• MP 1131</span></div>
+          <div class="tag">Inmobiliaria • San Luis • Atención personalizada</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+          <div class="pillbar">
+            <a class="pill" data-wa target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path fill="currentColor" d="M19.11 17.63c-.25-.13-1.45-.72-1.67-.8-.23-.09-.39-.13-.55.13-.16.25-.63.8-.77.97-.14.16-.28.19-.53.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.74-.14-.25-.02-.39.11-.51.12-.12.25-.28.38-.42.13-.14.17-.25.26-.41.09-.16.04-.31-.02-.44-.06-.13-.55-1.33-.75-1.83-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.41.06-.63.31-.22.25-.83.81-.83 1.98s.85 2.3.97 2.46c.12.16 1.67 2.55 4.05 3.58.56.24 1 .39 1.34.5.56.18 1.07.15 1.47.09.45-.07 1.45-.59 1.65-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28z"/>
+                <path fill="currentColor" d="M26.67 15.85c0 5.81-4.73 10.54-10.54 10.54-1.86 0-3.68-.5-5.28-1.45L5.33 26.67l1.78-5.39c-.93-1.61-1.42-3.43-1.42-5.31C5.69 10.16 10.42 5.33 16.23 5.33s10.44 4.73 10.44 10.52zm-10.44-8.7c-4.8 0-8.7 3.9-8.7 8.7 0 1.75.52 3.44 1.51 4.89l.16.24-1.04 3.15 3.25-1.02.23.14c1.43.93 3.09 1.42 4.79 1.42 4.8 0 8.7-3.9 8.7-8.7 0-4.8-3.9-8.82-8.9-8.82z"/>
+              </svg>
+              WhatsApp: 2664 629727
+            </a>
+
+            <a class="pill" data-ig target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.5-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/>
+              </svg>
+              Instagram
+            </a>
+          </div>
+
+          <!-- ✅ CAMBIO: nav con Ventas / Alquileres -->
+          <nav>
+            <a href="#servicios">Servicios</a>
+            <a href="#ventas">Ventas</a>
+            <a href="#alquileres">Alquileres</a>
+            <a href="#tasaciones">Tasaciones</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <div class="hero">
+      <div class="card hero-left">
+        <span class="kicker">Ventas • Alquileres • Administración • Consorcios</span>
+        <h1>Soluciones inmobiliarias con gestión seria y transparente</h1>
+        <p class="sub">
+          Te acompañamos de punta a punta: tasación, publicación, visitas, negociación y cierre.
+          Atención rápida por WhatsApp y asesoramiento claro.
+        </p>
+
+        <!-- ✅ CAMBIO: CTAs a ventas y alquileres -->
+        <div class="cta">
+          <a class="btn primary" data-wa target="_blank" rel="noopener">Hablar por WhatsApp</a>
+          <a class="btn ghost" href="#tasaciones">Solicitar tasación</a>
+          <a class="btn ghost" href="#ventas">Ver ventas</a>
+          <a class="btn ghost" href="#alquileres">Ver alquileres</a>
+        </div>
+
+        <div style="margin-top:18px" class="info-grid">
+          <div class="mini">
+            <div class="t">Tasaciones</div>
+            <div class="d">Análisis de mercado y valor real para vender bien y a tiempo.</div>
+          </div>
+          <div class="mini">
+            <div class="t">Administración</div>
+            <div class="d">Alquileres, cobros, seguimiento y documentación ordenada.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card hero-right">
+        <div class="logo-block">
+          <img src="logo.png" alt="Logo Alonso y Asociados" />
+        </div>
+        <div class="mini">
+          <div class="t">Contacto directo</div>
+          <div class="d">
+            WhatsApp: <b>2664 629727</b><br/>
+            Instagram: <b>@alonsoasociados01</b><br/>
+            Matrícula: <b>MP 1131</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="servicios">
+      <div class="section-title">
+        <h2>Servicios</h2>
+        <p>Lo esencial, bien hecho y con seguimiento.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="svc"><b>Tasaciones</b><span>Casas, departamentos, terrenos y locales. Informe claro y criterio de mercado.</span></div>
+        <div class="svc"><b>Ventas</b><span>Publicación, filtrado de interesados, visitas, negociación y cierre.</span></div>
+        <div class="svc"><b>Alquileres</b><span>Ingreso, contrato, seguimiento y gestión profesional del alquiler.</span></div>
+        <div class="svc"><b>Administración</b><span>Cobros, control, actualización, documentación y soporte al propietario.</span></div>
+        <div class="svc"><b>Consorcios</b><span>Gestión y administración: orden, transparencia y comunicación.</span></div>
+        <div class="svc"><b>Asesoramiento</b><span>Orientación para comprar, vender o invertir con seguridad.</span></div>
+      </div>
+    </section>
+
+    <!-- ✅ NUEVO: Ventas -->
+    <section id="ventas">
+      <div class="section-title">
+        <h2>Ventas</h2>
+        <p>Propiedades disponibles para comprar. </p>
+      </div>
+
+      <div class="props">
+        <div class="prop">
+          <div class="ph">Foto 1</div>
+          <div class="p">
+            <b>Casa • 3 dorm • (Zona)</b>
+            <div class="muted">m² • (precio)</div>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="ph">Foto 2</div>
+          <div class="p">
+            <b>Departamento • 2 amb • (Zona)</b>
+            <div class="muted">balcón • (precio)</div>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="ph">Foto 3</div>
+          <div class="p">
+            <b>Terreno • (Zona)</b>
+            <div class="muted">m² • servicios • (precio)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ NUEVO: Alquileres -->
+    <section id="alquileres">
+      <div class="section-title">
+        <h2>Alquileres</h2>
+        <p>Propiedades disponibles para alquilar. </p>
+      </div>
+
+      <div class="props">
+        <div class="prop">
+          <div class="ph">Foto 1</div>
+          <div class="p">
+            <b>Departamento • 2 amb • (Zona)</b>
+            <div class="muted">expensas • (precio)</div>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="ph">Foto 2</div>
+          <div class="p">
+            <b>Casa • 2 dorm • (Zona)</b>
+            <div class="muted">patio • (precio)</div>
+          </div>
+        </div>
+        <div class="prop">
+          <div class="ph">Foto 3</div>
+          <div class="p">
+            <b>Local • (Zona)</b>
+            <div class="muted">m² • (precio)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tasaciones">
+      <div class="section-title">
+        <h2>Solicitar tasación</h2>
+        <p>Te respondemos por WhatsApp con rapidez.</p>
+      </div>
+
+      <div class="card">
+        <form onsubmit="
+          event.preventDefault();
+          const nombre = document.getElementById('n').value.trim();
+          const tel = document.getElementById('t').value.trim();
+          const direccion = document.getElementById('d').value.trim();
+          const msg = document.getElementById('m').value.trim();
+
+          const textRaw =
+            'Hola! Soy ' + (nombre||'[Nombre]') +
+            '. Tel: ' + (tel||'[Tel]') +
+            '. Quiero una tasación. Dirección: ' + (direccion||'[Dirección]') +
+            '. Detalles: ' + (msg||'[Detalles]');
+
+          window.open(waLink(textRaw), '_blank');
+        ">
+          <div class="two">
+            <input id="n" required placeholder="Nombre y apellido" />
+            <input id="t" required placeholder="Teléfono / WhatsApp" />
+          </div>
+          <input id="d" placeholder="Dirección / zona de la propiedad" />
+          <textarea id="m" rows="4" placeholder="Tipo (casa/depto/terreno), m², ambientes, estado, etc."></textarea>
+          <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+          <div class="muted" style="font-size:13px">
+            Al enviar, se abre WhatsApp con el mensaje ya armado.
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="section-title">
+        <h2>Contacto</h2>
+        <p>Canales directos para consultar.</p>
+      </div>
+
+      <div class="card" style="padding:16px">
+        <div class="grid3">
+          <div class="svc">
+            <b>WhatsApp</b>
+            <span>
+              <a data-wa target="_blank" rel="noopener"><b>2664 629727</b></a>
+              <div class="muted">Respuesta rápida.</div>
+            </span>
+          </div>
+          <div class="svc">
+            <b>Instagram</b>
+            <span>
+              <a data-ig target="_blank" rel="noopener"><b>@alonsoasociados01</b></a>
+              <div class="muted">Publicaciones y contacto.</div>
+            </span>
+          </div>
+          <div class="svc">
+            <b>Email</b>
+            <span>
+              <a data-mail><b>agus.alonso95@hotmail.com</b></a>
+              <div class="muted">Consultas por correo.</div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        © <span id="year"></span> Alonso y Asociados Inmobiliaria — Todos los derechos reservados.
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Globo -->
+  <div class="wa-badge">¿Consultás? <span>Te respondemos por WhatsApp</span></div>
+
+  <!-- Botón flotante WhatsApp -->
+  <a class="wa-float" data-wa target="_blank" rel="noopener" aria-label="WhatsApp Alonso y Asociados">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path fill="#fff" d="M19.11 17.63c-.25-.13-1.45-.72-1.67-.8-.23-.09-.39-.13-.55.13-.16.25-.63.8-.77.97-.14.16-.28.19-.53.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.49-1.4-1.74-.14-.25-.02-.39.11-.51.12-.12.25-.28.38-.42.13-.14.17-.25.26-.41.09-.16.04-.31-.02-.44-.06-.13-.55-1.33-.75-1.83-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.41.06-.63.31-.22.25-.83.81-.83 1.98s.85 2.3.97 2.46c.12.16 1.67 2.55 4.05 3.58.56.24 1 .39 1.34.5.56.18 1.07.15 1.47.09.45-.07 1.45-.59 1.65-1.17.2-.58.2-1.07.14-1.17-.06-.1-.22-.16-.47-.28z"/>
+      <path fill="#fff" d="M26.67 15.85c0 5.81-4.73 10.54-10.54 10.54-1.86 0-3.68-.5-5.28-1.45L5.33 26.67l1.78-5.39c-.93-1.61-1.42-3.43-1.42-5.31C5.69 10.16 10.42 5.33 16.23 5.33s10.44 4.73 10.44 10.52zm-10.44-8.7c-4.8 0-8.7 3.9-8.7 8.7 0 1.75.52 3.44 1.51 4.89l.16.24-1.04 3.15 3.25-1.02.23.14c1.43.93 3.09 1.42 4.79 1.42 4.8 0 8.7-3.9 8.7-8.7 0-4.8-3.9-8.82-8.9-8.82z"/>
+    </svg>
+  </a>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+
