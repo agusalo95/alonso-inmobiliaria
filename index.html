@@ -87,6 +87,7 @@
       box-shadow: 0 6px 14px rgba(0,0,0,.06);
       font-size:14px;
       white-space:nowrap;
+      transition: transform .15s ease;
     }
     .pill svg{width:18px;height:18px; display:block}
     .pill:hover{transform: translateY(-1px)}
@@ -109,15 +110,17 @@
     .menu-btn{
       display:none;
       align-items:center;
+      justify-content:space-between;
       gap:10px;
-      padding:10px 12px;
+      padding:12px 14px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.70);
-      border-radius:14px;
+      background:rgba(255,255,255,.72);
+      border-radius:16px;
       font-weight:900;
       cursor:pointer;
       box-shadow: 0 6px 14px rgba(0,0,0,.06);
       user-select:none;
+      width:100%;
     }
     .menu-btn svg{width:18px;height:18px; display:block}
 
@@ -199,7 +202,10 @@
     .mini .d{color:var(--muted); font-size:13.5px; margin-top:4px}
 
     section{padding:18px 0}
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin:18px 0 10px}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:10px; margin:18px 0 10px
+    }
     .section-title h2{margin:0; font-size:24px}
     .section-title p{margin:0; color:var(--muted); font-size:14px}
 
@@ -246,6 +252,7 @@
       background: rgba(255,255,255,.85);
       font-size:14.5px;
       outline: none;
+      width:100%;
     }
     input:focus, textarea:focus{border-color: rgba(31,42,51,.35)}
     .two{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
@@ -293,13 +300,28 @@
     }
     .wa-badge span{color:var(--muted); font-weight:700}
 
-    /* ✅ RESPONSIVE real para CELU */
+    /* ✅ PRO MOBILE */
     @media (max-width: 900px){
+      /* margen lateral más prolijo */
+      .wrap{ padding: 0 14px; }
+
       .topbar{
         flex-direction:column;
         align-items:stretch;
         gap:10px;
       }
+
+      /* Brand centrado en móvil */
+      .brand{
+        align-items:center;
+        text-align:center;
+      }
+      .brand img{
+        width:100%;
+        height: clamp(58px, 10vw, 78px);
+      }
+      .brand .name{font-size:20px}
+      .brand .tag{font-size:13px}
 
       .right-col{
         width:100%;
@@ -307,13 +329,7 @@
         align-items:stretch;
       }
 
-      /* banner grande pero que no rompa */
-      .brand img{
-        width:100%;
-        height: clamp(58px, 10vw, 78px);
-      }
-
-      /* Botones arriba en 2 columnas */
+      /* pills en 2 columnas iguales */
       .pillbar{
         width:100%;
         display:grid;
@@ -326,14 +342,9 @@
         justify-content:center;
       }
 
-      /* Botón menú visible */
-      .menu-btn{
-        display:inline-flex;
-        width:100%;
-        justify-content:space-between;
-      }
+      /* menú */
+      .menu-btn{ display:inline-flex; }
 
-      /* nav colapsado */
       nav{
         display:none;
         width:100%;
@@ -348,16 +359,38 @@
       nav a{
         flex:1 1 auto;
         text-align:center;
-        background:rgba(255,255,255,.75);
+        background:rgba(255,255,255,.78);
         border:1px solid var(--line);
       }
 
-      .hero{grid-template-columns:1fr}
+      /* layout general */
+      .hero{grid-template-columns:1fr; padding:22px 0 10px;}
+      .hero-left, .hero-right{ padding:18px; }
+      .logo-block{ min-height: 180px; padding:14px; }
+
+      h1{font-size:34px}
+      .sub{font-size:15.5px}
+
+      /* CTAs a ancho completo */
+      .cta{ gap:10px; }
+      .cta .btn{ width:100%; }
+
+      /* secciones: título y texto en columna */
+      .section-title{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:6px;
+      }
+
+      /* grillas a 1 columna */
       .info-grid{grid-template-columns:1fr}
       .grid3{grid-template-columns:1fr}
       .props{grid-template-columns:1fr}
+
+      /* formulario: 2 campos arriba -> 1 columna */
+      .two{ grid-template-columns: 1fr; }
+
       .wa-badge{display:none;}
-      h1{font-size:34px}
     }
   </style>
 </head>
@@ -610,7 +643,7 @@
           <textarea id="m" rows="4" placeholder="Tipo (casa/depto/terreno), m², ambientes, estado, etc."></textarea>
           <button class="btn primary" type="submit">Enviar por WhatsApp</button>
           <div class="muted" style="font-size:13px">
-            
+            Al enviar, se abre WhatsApp con el mensaje ya armado.
           </div>
         </form>
       </div>
@@ -672,5 +705,7 @@
 
 </body>
 </html>
+
+
 
 
